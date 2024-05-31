@@ -15,3 +15,5 @@ document.querySelector<HTMLDivElement>("#app")!.innerHTML = `
 `;
 
 console.log($(".btn").length());
+$(".btn").click(() => console.log("clicked!"));
+$(".btn").mouseover(() => console.log("over"));

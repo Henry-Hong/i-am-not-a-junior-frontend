@@ -6,6 +6,7 @@
     "apps/*"
   ],
   "scripts": {
+    "dev:app": "yarn workspace sample-app dev",
     "build:lib": "yarn workspace mini-query build",
     "test": "yarn workspace mini-query test"
   },

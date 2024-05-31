@@ -2,16 +2,15 @@
   "name": "mini-query",
   "private": true,
   "version": "0.0.0",
-  "main": "./dist/mini-query.umd.js",
-  "module": "./dist/mini-query.es.js",
+  "module": "./src/main.js",
   "exports": {
     ".": {
-      "import": "./dist/mini-query.es.js",
-      "require": "./dist/mini-query.umd.js"
+      "import": "./src/main.js"
     }
   },
   "type": "module",
   "files": [
+    "src",
     "dist"
   ],
   "scripts": {
