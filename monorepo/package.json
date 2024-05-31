@@ -5,7 +5,8 @@
     "packages/*"
   ],
   "scripts": {
-    "build:lib": "yarn workspace mini-query build"
+    "build:lib": "yarn workspace mini-query build",
+    "test": "yarn workspace mini-query test"
   },
   "packageManager": "yarn@1.22.21"
 }
