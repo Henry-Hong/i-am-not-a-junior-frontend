@@ -1,4 +1,3 @@
-// @ts-nocheck
 // index.d.ts 파일을 직접 만들어줘야함
 import "./style.css";
 
