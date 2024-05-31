@@ -1,5 +1,5 @@
 import { $ } from "./main";
-import { test, expect, describe } from "vitest";
+import { test, expect, describe, vi } from "vitest";
 
 describe("mini-query", () => {
   test("adds 1 + 2 to equal 3", () => {
@@ -18,5 +18,21 @@ describe("mini-query", () => {
       <div class="btn">buttons</div>
     `;
     expect($(".btn", div).length()).toBe(3);
+  });
+
+  test("click()", () => {
+    const div = document.createElement("div");
+    div.innerHTML = `
+      <div class="btn">buttons</div>
+      <div class="btn">buttons</div>
+      <div class="btn">buttons</div>
+    `;
+
+    const handler = vi.fn();
+    $(".btn", div).click(handler);
+
+    div.querySelectorAll(".btn")[0].dispatchEvent(new MouseEvent("click"));
+
+    expect(handler).toHaveBeenCalledTimes(1);
   });
 });

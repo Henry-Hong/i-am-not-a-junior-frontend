@@ -7,6 +7,13 @@ class MiniQuery {
     );
   }
 
+  click = (callback: EventListenerOrEventListenerObject) => {
+    this.elements.forEach((element) => {
+      element.addEventListener("click", callback);
+    });
+    return this;
+  };
+
   length = () => this.elements.length;
 }
 
