@@ -1,0 +1,11 @@
+{
+  "name": "monorepo-test",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "build:lib": "yarn workspace mini-query build"
+  },
+  "packageManager": "yarn@1.22.21"
+}
