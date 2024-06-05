@@ -21,11 +21,17 @@ export default function 동영상에서_이미지추출() {
      * ...
      */
     ctx?.drawImage(video, 0, 0, video.videoWidth, video.videoHeight);
-    canvas.toBlob((blob) => {
-      if (!blob) return;
-      const objectUrl = URL.createObjectURL(blob);
-      setImageSrc(objectUrl);
-    });
+
+    // dataURL로 바로 처리하기
+    const dataUrl = canvas.toDataURL("image/png");
+    setImageSrc(dataUrl);
+
+    // blob으로 처리하기
+    // canvas.toBlob((blob) => {
+    //   if (!blob) return;
+    //   const objectUrl = URL.createObjectURL(blob);
+    //   setImageSrc(objectUrl);
+    // });
   };
 
   return (
