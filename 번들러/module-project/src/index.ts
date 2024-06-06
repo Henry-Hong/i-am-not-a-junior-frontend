@@ -1,1 +1,1 @@
-console.log("module project");
+export { default as Button } from "./components/Button";
