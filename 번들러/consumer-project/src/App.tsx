@@ -5,7 +5,7 @@ import { Button } from "module-project";
 function App() {
   return (
     <>
-      <Button variants="primary" />
+      <Button variants="primary">버튼입니다</Button>
     </>
   );
 }

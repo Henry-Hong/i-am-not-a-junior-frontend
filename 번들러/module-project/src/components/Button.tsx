@@ -6,6 +6,5 @@ export default function Button({
   variants: "primary" | "secondary";
 }) {
   const color = variants === "primary" ? "blue" : "red";
-
   return <button style={{ backgroundColor: color }}>{children}</button>;
 }
