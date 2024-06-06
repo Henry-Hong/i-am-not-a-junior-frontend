@@ -1,30 +1,26 @@
-# React + TypeScript + Vite
+# consumer-project
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# 배경
 
-Currently, two official plugins are available:
+- 리액트 컴포넌트 라이브러리를 만들고 있다. 라이브러리의 번들 사이즈를 최적화하는것도 중요하지만, 더욱 중요한것은 '최종 어플리케이션'을 빌드했을 때의 번들 사이즈이다.
+- 앞으로 라이브러리의 번들링을 "사전 번들링", 최종 어플리케이션의 번들링을 "최종 번들링"으로 칭한다.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+# 사용법
 
-## Expanding the ESLint configuration
+1. /module-project 디렉토리로 이동
+2. yarn link
+3. /consumer-project 디렉토리로 이동
+4. yarn link module-project로 디펜던시 설치
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+# 실험
 
-- Configure the top-level `parserOptions` property like this:
+- 먼저, 리액트 컴포넌트 라이브러리 (module-project)를 설치하기 전, 최종 번들링 사이즈를 구한다.
+- 이후 라이브러리의 빌드사이즈에 영향을 주는 다양한 옵션을 바꾸어가면서 최종 번들링 사이즈를 구한다. (현재로서는 external 옵션에 주목할 예정이다)
+- 가설 : 번들 사이즈는 트리쉐이킹의 영향을 많이 받는다. 사전 번들링을 진행한 라이브러리는 결국 하나의 JS 파일이 된다. 번들러는 모듈의 의존관계를 바탕으로 트리쉐이킹을 수행하기 때문에, 번들링이 된 하나의 JS 파일은 트리쉐이킹이 진행되지 않는다. 사전 번들링된 라이브러리는 최종 어플리케이션과 같은 디펜던시를 가지고 있다. (react, react-dom) 이때, 트리쉐이킹 되어야할 디펜던시가 하나로 사전 번들링되어, 최종 번들링 단계에서 중복되게 된다. react, react-dom이 2번씩 저장될 것이다. 따라서 오히려 사전번들링을 수행했지만, 최종 번들사이즈는 커지게되는 결과를 초래할 것이다.
+- 다음 4가지 케이스의 최종 번들 사이즈를 알아보고, 어느것이 가장 최적화 되었는지 비교해보도록 하자.
+- 가설에 의하면 4번이 트리쉐이킹에 가장 유리할 것이다. (1번제외)
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+1. 라이브러리 X
+2. 라이브러리 O, 사전 번들링 O, 최적화 X
+3. 라이브러리 O, 사전 번들링 O, 최적화 O
+4. 라이브러리 O, 사전 번들링 X, TSC만 사용
