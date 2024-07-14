@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body style="margin: 0">
+  <div style="height: 100dvh; background-color: red;">1</div>
+  <div style="height: 100dvh; background-color: blue;">2</div>
+  <div style="height: 100dvh; background-color: green;">3</div>
+</body>
+
+<script>
+
+  /**
+   * IntersectionObserver setting
+   * Intersection Observer는 뷰포트와 타겟 엘리먼트의 교차점을 감지하는 객체이다.
+   * 대표적인 변화로는 다음 두가지가 있다.
+   * 1. 타겟 엘리먼트가 뷰포트에 들어오거나 나갈 때
+   * 2. 타겟 엘리먼트가 뷰포트에 얼마나 보이는지 비율을 알 수 있다.
+   */
+  const options = {
+    root: null,
+    rootMargin: "0px",
+    threshold: 0.5,
+  };
+
+  const observer = new IntersectionObserver((entries, observer) => {
+    for (const entry of entries) {
+      if (entry.isIntersecting) {
+        console.log(`${entry.target.textContent}이 뷰포트에 들어왔습니다.`);
+      } else {
+        console.log(`${entry.target.textContent} 뷰포트에서 나갔습니다.`);
+      }
+      console.log("⭐️ entry", entry);
+    }
+  }, options);
+
+  const targetNodes = document.querySelectorAll("div");
+
+  targetNodes.forEach((targetNode) => {
+    observer.observe(targetNode);
+  });
+
+  // observer.disconnect();
+
+</script>
+
+</html>
