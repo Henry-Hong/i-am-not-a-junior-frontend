@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="target-node">target node</div>
+
+
+  <button id="add-node">add node</button>
+  <button id="remove-node">remove node</button>
+  <button id="add-attribute">add attribute</button>
+  <button id="remove-attribute">remove attribute</button>
+  <button id="change-attribute">change attribute</button>
+  <button id="change-text">change text</button>
+</body>
+
+<script>
+
+  /**
+   * MutationObserver setting 
+   * Mutation Observer는 말 그대로 노드의 변화를 감지하는 객체이다.
+   * 대표적인 변화로는 다음 두가지가 있다.
+   * 1. 자식 노드의 변경, 추가, 삭제
+   * 2. 속성의 변경
+   */
+  const targetNode = document.getElementById("target-node");
+
+  const observer = new MutationObserver((mutationList, observer) => {
+    for (const mutation of mutationList) {
+      if (mutation.type === "childList") {
+        console.log(`자식 노드가 추가되거나 삭제되었습니다.`);
+      } else if (mutation.type === "attributes") {
+        console.log(`${mutation.attributeName} attributes가 변경되었습니다.`);
+      }
+      console.log("⭐️ mutation", mutation);
+    }
+  });
+
+  observer.observe(targetNode, {
+    attributes: true,
+    childList: true,
+    subtree: true,
+  });
+
+  // observer.disconnect();
+
+  /**
+   * Event Listener
+   */
+  const addNodeButton = document.getElementById("add-node");
+  const removeNodeButton = document.getElementById("remove-node");
+  const addAttributeButton = document.getElementById("add-attribute");
+  const removeAttributeButton = document.getElementById("remove-attribute");
+  const changeAttributeButton = document.getElementById("change-attribute");
+  const changeTextButton = document.getElementById("change-text");
+
+  addNodeButton.addEventListener("click", () => {
+    const newNode = document.createElement("div");
+    newNode.textContent = "new node";
+    targetNode.appendChild(newNode);
+  });
+
+  removeNodeButton.addEventListener("click", () => {
+    const lastNode = targetNode.lastChild;
+    targetNode.removeChild(lastNode);
+  });
+
+  addAttributeButton.addEventListener("click", () => {
+    targetNode.setAttribute("data-test", "test");
+  });
+
+  removeAttributeButton.addEventListener("click", () => {
+    targetNode.removeAttribute("data-test");
+  });
+
+  changeAttributeButton.addEventListener("click", () => {
+    targetNode.setAttribute("data-test", "change");
+  });
+
+  changeTextButton.addEventListener("click", () => {
+    targetNode.textContent = "change text";
+  });
+
+</script>
+
+
+</html>
