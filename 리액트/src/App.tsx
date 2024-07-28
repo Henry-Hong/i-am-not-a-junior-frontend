@@ -5,6 +5,7 @@ import HTML로_모달만들기 from "./HTML로_모달만들기";
 import 중첩모달만들기 from "./중첩모달만들기";
 import 리액트쿼리_Suspense from "./리액트쿼리_Suspense";
 import { Suspense } from "react";
+import 화면에보이는것만_임포트 from "./화면에보이는것만_임포트";
 
 function App() {
   return (
@@ -38,6 +39,9 @@ function App() {
       <Suspense fallback={<div>loading...</div>}>
         <리액트쿼리_Suspense />
       </Suspense>
+
+      {/* IntersctionObserver */}
+      <화면에보이는것만_임포트 />
     </div>
   );
 }
