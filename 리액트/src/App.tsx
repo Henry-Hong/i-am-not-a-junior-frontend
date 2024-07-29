@@ -5,6 +5,7 @@ import 중첩모달만들기 from "./중첩모달만들기";
 import 리액트쿼리_Suspense from "./리액트쿼리_Suspense";
 import { Suspense } from "react";
 import 화면에보이는것만_임포트 from "./화면에보이는것만_임포트";
+import 헤드리스_캘린더 from "./헤드리스_캘린더";
 
 function App() {
   return (
@@ -41,6 +42,9 @@ function App() {
 
       {/* IntersctionObserver */}
       <화면에보이는것만_임포트 />
+
+      {/* 헤드리스 캘린더 */}
+      <헤드리스_캘린더/>
     </div>
   );
 }

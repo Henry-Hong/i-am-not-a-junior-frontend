@@ -10,8 +10,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@h6s/calendar": "^2.0.1",
     "@tanstack/react-query": "^5.45.1",
     "autoprefixer": "^10.4.19",
+    "date-fns": "^3.6.0",
     "postcss": "^8.4.40",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

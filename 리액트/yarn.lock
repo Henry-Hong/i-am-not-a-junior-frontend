@@ -523,6 +523,21 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@h6s/calendar@npm:^2.0.1":
+  version: 2.0.1
+  resolution: "@h6s/calendar@npm:2.0.1"
+  peerDependencies:
+    date-fns: ">= 2"
+    react: ">= 18"
+  peerDependenciesMeta:
+    react-dom:
+      optional: true
+    react-native:
+      optional: true
+  checksum: 10c0/fe47ac59efdd54263c1fac41fbe206c94ee24a42c0a283976f5fda720d115d33b480c7f8b1d2999224f2f6a91dd76beff69c9d8d0dd73a32634aced41b0ed5dd
+  languageName: node
+  linkType: hard
+
 "@humanwhocodes/config-array@npm:^0.11.14":
   version: 0.11.14
   resolution: "@humanwhocodes/config-array@npm:0.11.14"
@@ -1645,6 +1660,13 @@ __metadata:
   version: 3.1.3
   resolution: "csstype@npm:3.1.3"
   checksum: 10c0/80c089d6f7e0c5b2bd83cf0539ab41474198579584fa10d86d0cafe0642202343cbc119e076a0b1aece191989477081415d66c9fefbf3c957fc2fc4b7009f248
+  languageName: node
+  linkType: hard
+
+"date-fns@npm:^3.6.0":
+  version: 3.6.0
+  resolution: "date-fns@npm:3.6.0"
+  checksum: 10c0/0b5fb981590ef2f8e5a3ba6cd6d77faece0ea7f7158948f2eaae7bbb7c80a8f63ae30b01236c2923cf89bb3719c33aeb150c715ea4fe4e86e37dcf06bed42fb6
   languageName: node
   linkType: hard
 
@@ -3242,6 +3264,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "react-practice@workspace:."
   dependencies:
+    "@h6s/calendar": "npm:^2.0.1"
     "@tanstack/eslint-plugin-query": "npm:^5.43.1"
     "@tanstack/react-query": "npm:^5.45.1"
     "@types/react": "npm:^18.2.66"
@@ -3250,6 +3273,7 @@ __metadata:
     "@typescript-eslint/parser": "npm:^7.2.0"
     "@vitejs/plugin-react": "npm:^4.2.1"
     autoprefixer: "npm:^10.4.19"
+    date-fns: "npm:^3.6.0"
     eslint: "npm:^8.57.0"
     eslint-plugin-react-hooks: "npm:^4.6.0"
     eslint-plugin-react-refresh: "npm:^0.4.6"
