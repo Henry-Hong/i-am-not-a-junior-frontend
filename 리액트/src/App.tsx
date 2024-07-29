@@ -1,4 +1,3 @@
-import styles from "./App.module.css";
 import 동영상에서_이미지추출 from "./동영상에서_이미지추출";
 import 컨텍스트는_분리해야한다 from "./컨텍스트는_분리해야한다";
 import HTML로_모달만들기 from "./HTML로_모달만들기";
@@ -9,7 +8,7 @@ import 화면에보이는것만_임포트 from "./화면에보이는것만_임�
 
 function App() {
   return (
-    <div className={styles.FlexVerticalLeft}>
+    <div className="flex flex-col items-start">
       {/* 컨텍스트는_분리해야한다 */}
       <컨텍스트는_분리해야한다 />
 
