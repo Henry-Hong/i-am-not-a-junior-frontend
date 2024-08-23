@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let i = 1;
+      function log(...content) {
+        console.group(i++);
+        console.log(...content);
+        console.groupEnd();
+      }
+      /*
+        3. 객체의 노말 펑션 -> 줏대없이 this가 자꾸 바뀜
+        4. 객체의 애로우 펑션 -> this가 고정되어있음
+        5. new 생성자로 생성되면 this가 바뀌나..?
+      */
+
+      /* 1. this는 기본적으로 window를 가리킴. */
+      log(this, globalThis, window); // (1) Window (object)
+
+      /* 2. 근데 바뀌는 경우가 3가지 정도 있음. - 객체 메서드 */
+      const human = {
+        name: "hong gil dong",
+        sayName: function () {
+          log(this.name);
+        },
+        sayName2() {
+          log(this.name);
+        },
+        sayName3: () => {
+          log(this.name);
+        },
+      };
+      human.sayName(); // (2) 'hong gil dong' (string)
+      human.sayName2(); // (3) 'hong gil dong' (string)
+      human.sayName3(); // (4) '' (string)
+
+      /* 2. 근데 바뀌는 경우가 3가지 정도 있음. - new */
+      function OldStlyeConstructor(type) {
+        this.type = type;
+      }
+      const oldInstance = new OldStlyeConstructor("old");
+      log(oldInstance); // (5) {type: 'old'}
+
+      /* 2. 근데 바뀌는 경우가 3가지 정도 있음. - bind, apply, call */
+      human.sayName.bind({ name: "kim gil dong" })(); // (6) bind는 return. 함수 실행 X.
+      human.sayName.call({ name: "kim gil dong" }); // (7) call은 평소 함수 콜하듯 invoke. 함수 실행 O.
+      human.sayName.apply({ name: "kim gil dong" }); // (8) apply는 배열로 조금 더 간편화해서 invoke. 함수 실행 O.
+
+      /* 3. this는 호출자(호출하는 주체)에 따라 달라짐. */
+      const copySayName = human.sayName;
+      const copySayName2 = human.sayName2;
+      const copySayName3 = human.sayName3;
+      copySayName(); // '' (string)
+      copySayName2(); // '' (string)
+      copySayName3(); // '' (string)
+    </script>
+  </body>
+</html>
