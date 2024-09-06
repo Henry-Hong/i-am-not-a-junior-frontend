@@ -6,10 +6,11 @@ import 리액트쿼리_Suspense from "./리액트쿼리_Suspense";
 import { Suspense } from "react";
 import 화면에보이는것만_임포트 from "./화면에보이는것만_임포트";
 import 헤드리스_캘린더 from "./헤드리스_캘린더";
+import WINDOW_RESIZE_ANIMATION from "./WINDOW_RESIZE_ANIMATION";
 
 function App() {
   return (
-    <div className="flex flex-col items-start">
+    <div className="flex flex-col items-start my-40">
       {/* 컨텍스트는_분리해야한다 */}
       <컨텍스트는_분리해야한다 />
 
@@ -44,7 +45,10 @@ function App() {
       <화면에보이는것만_임포트 />
 
       {/* 헤드리스 캘린더 */}
-      <헤드리스_캘린더/>
+      <헤드리스_캘린더 />
+
+      {/* Window Resize Animation */}
+      <WINDOW_RESIZE_ANIMATION />
     </div>
   );
 }
