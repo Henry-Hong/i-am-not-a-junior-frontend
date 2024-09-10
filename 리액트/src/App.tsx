@@ -7,6 +7,7 @@ import { Suspense } from "react";
 import 화면에보이는것만_임포트 from "./화면에보이는것만_임포트";
 import 헤드리스_캘린더 from "./헤드리스_캘린더";
 import WINDOW_RESIZE_ANIMATION from "./WINDOW_RESIZE_ANIMATION";
+import FSM from "./FSM";
 
 function App() {
   return (
@@ -49,6 +50,9 @@ function App() {
 
       {/* Window Resize Animation */}
       <WINDOW_RESIZE_ANIMATION />
+
+      {/* Finate State Machine */}
+      <FSM />
     </div>
   );
 }
