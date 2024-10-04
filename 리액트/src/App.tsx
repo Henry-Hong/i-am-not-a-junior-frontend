@@ -8,10 +8,13 @@ import 화면에보이는것만_임포트 from "./화면에보이는것만_임�
 import 헤드리스_캘린더 from "./헤드리스_캘린더";
 import WINDOW_RESIZE_ANIMATION from "./WINDOW_RESIZE_ANIMATION";
 import FSM from "./FSM";
+import { Link } from "react-router-dom";
 
 function App() {
   return (
     <div className="flex flex-col items-start my-40">
+      <Link to="/test">click</Link>
+
       {/* 컨텍스트는_분리해야한다 */}
       <컨텍스트는_분리해야한다 />
 
