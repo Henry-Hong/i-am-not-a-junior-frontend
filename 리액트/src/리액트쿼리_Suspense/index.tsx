@@ -53,13 +53,30 @@ export default function 리액트쿼리_Suspense() {
   //   ],
   // });
 
+  /**
+   * Suspense로 감싸놓고 useSuspsenseQuery대신 useQuery를 사용하면, 쿼리가 병렬적으로 요청된다. side-by-side
+   * 차이점은 useQuery는 throw Promise를 하지 않는가보다 (뇌피셜)
+   * https://tanstack.com/query/latest/docs/framework/react/guides/parallel-queries#manual-parallel-queries
+   */
+  // const { data: todos1 } = useQuery({
+  //   queryKey: ["todos"],
+  //   queryFn: getTodos,
+  // });
+
+  // const { data: todos2 } = useQuery({
+  //   queryKey: ["todos2"],
+  //   queryFn: getTodos2,
+  // });
+
   return (
     <div
       style={{
         display: "flex",
         flexDirection: "column",
+        backgroundColor: "red",
       }}
     >
+      <h1>리액트쿼리_Suspense</h1>
       {todos1}
       {todos2}
     </div>
