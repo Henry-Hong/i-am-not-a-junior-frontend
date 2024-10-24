@@ -8,6 +8,9 @@ jobs:
   comment:
     runs-on: ubuntu-latest
     steps:
+      - name: checkout-branch
+        uses: actions/checkout@v3
+
       - name: check-comment
         id: check-comment
         uses: actions/github-script@v6
@@ -15,9 +18,9 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             const result = await github.rest.pulls.listReviewComments({ 
-              owner: 'Henry-Hong',
-              repo: 'i-am-not-a-junior-frontend',
-              pull_number: 2,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: context.issue.number,
             });
 
             const recentComment = result.data?.at(-1).body;
@@ -25,14 +28,11 @@ jobs:
             if(recentComment.includes('NTC')) return true;
             else return false;
 
-      - name: checkout-branch
-        uses: actions/checkout@v3
-
       - name: make-this-pr-to-draft
         if: ${{ steps.check-comment.outputs.result == 'true' }}
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: gh pr ready --undo 2
+        run: gh pr ready --undo ${{ github.event.pull_request.number }}
 # github.rest.pulls.listReviewComments({
 #   owner: context.repo.owner,
 #   repo: context.repo.repo,
