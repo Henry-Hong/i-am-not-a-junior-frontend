@@ -12,24 +12,19 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            console.log(context)
-            return
-            github.rest.pulls.listCommentsForReview({ 
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              pull_number: context.pull.number,
-              body: '👋 Thanks for the comment!',
-            })
-
-            github.rest.pulls.listReviewComments({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
+            const result = awaitgithub.rest.pulls.listCommentsForReview({ 
+              owner: context.repository.owner,
+              repo: context.repository.name,
               pull_number: context.issue.number,
             })
 
-#             pulls.listCommentsForReview({
-#   owner,
-#   repo,
-#   pull_number,
-#   review_id,
-# });
+# github.rest.pulls.listReviewComments({
+#   owner: context.repo.owner,
+#   repo: context.repo.repo,
+#   pull_number: context.issue.number,
+# })
+
+# owner,
+# repo,
+# pull_number,
+# review_id,
