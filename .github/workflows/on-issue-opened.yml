@@ -18,9 +18,7 @@ jobs:
               pull_number: 2,
             });
 
-            const recentComment = result.data?.[0].body;
-
-            console.log(recentComment);
+            const recentComment = result.data?.at(-1).body;
 
             if(recentComment.includes('NTC')) {
               await github.rest.issues.addLabels({
