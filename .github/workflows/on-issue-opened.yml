@@ -12,9 +12,24 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            github.rest.issues.createComment({
-              issue_number: context.issue.number,
+            console.log(context)
+            return
+            github.rest.pulls.listCommentsForReview({ 
               owner: context.repo.owner,
               repo: context.repo.repo,
+              pull_number: context.pull.number,
               body: '👋 Thanks for the comment!',
             })
+
+            github.rest.pulls.listReviewComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: context.issue.number,
+            })
+
+#             pulls.listCommentsForReview({
+#   owner,
+#   repo,
+#   pull_number,
+#   review_id,
+# });
