@@ -13,9 +13,9 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             const result = await github.rest.pulls.listCommentsForReview({ 
-              owner: context.repository.owner,
-              repo: context.repository.name,
-              pull_number: context.issue.number,
+              owner: context.payload.repository.owner,
+              repo: context.payload.repository.name,
+              pull_number: context.payload.issue.number,
             })
 
 # github.rest.pulls.listReviewComments({
