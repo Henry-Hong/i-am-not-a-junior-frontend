@@ -18,7 +18,16 @@ jobs:
               pull_number: 2,
             });
 
-            console.log(result);
+            const recentComment = result.data?[0].body;
+
+            if(recentComment.includes('NTC')) {
+              await github.rest.issues.addLabels({
+                owner: 'Henry-Hong',
+                repo: 'i-am-not-a-junior-frontend',
+                issue_number: 2,
+                labels: ['need-to-change'],
+              });
+            }
 
 # github.rest.pulls.listReviewComments({
 #   owner: context.repo.owner,
