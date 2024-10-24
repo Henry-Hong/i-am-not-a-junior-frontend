@@ -25,7 +25,7 @@ jobs:
             if(recentComment.includes('NTC')) return true;
             else return false;
       - name: make-this-pr-to-draft
-        run: echo ${{steps.check-comment.outputs}}
+        run: echo ${{steps.check-comment.outputs.result}}
 # github.rest.pulls.listReviewComments({
 #   owner: context.repo.owner,
 #   repo: context.repo.repo,
