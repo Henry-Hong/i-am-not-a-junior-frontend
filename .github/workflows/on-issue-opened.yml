@@ -24,6 +24,10 @@ jobs:
 
             if(recentComment.includes('NTC')) return true;
             else return false;
+
+      - name: checkout-branch
+        uses: actions/checkout@v3
+
       - name: make-this-pr-to-draft
         if: ${{ steps.check-comment.outputs.result == 'true' }}
         env:
