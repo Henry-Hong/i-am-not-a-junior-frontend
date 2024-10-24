@@ -20,6 +20,8 @@ jobs:
 
             const recentComment = result.data?.[0].body;
 
+            console.log(recentComment);
+
             if(recentComment.includes('NTC')) {
               await github.rest.issues.addLabels({
                 owner: 'Henry-Hong',
