@@ -12,7 +12,7 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            const result = awaitgithub.rest.pulls.listCommentsForReview({ 
+            const result = await github.rest.pulls.listCommentsForReview({ 
               owner: context.repository.owner,
               repo: context.repository.name,
               pull_number: context.issue.number,
