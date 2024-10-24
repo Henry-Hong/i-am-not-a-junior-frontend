@@ -8,7 +8,8 @@ jobs:
   comment:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/github-script@v6
+      - name: check-comment
+        uses: actions/github-script@v6
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
@@ -20,15 +21,11 @@ jobs:
 
             const recentComment = result.data?.at(-1).body;
 
-            if(recentComment.includes('NTC')) {
-              await github.rest.issues.addLabels({
-                owner: 'Henry-Hong',
-                repo: 'i-am-not-a-junior-frontend',
-                issue_number: 2,
-                labels: ['need-to-change'],
-              });
-            }
-
+            if(recentComment.includes('NTC')) return true;
+            else return false;
+      - name: make-this-pr-to-draft
+        if: ${{steps.check-comment.outputs.result == 'true'}}
+        run: gh pr ready --undo 2
 # github.rest.pulls.listReviewComments({
 #   owner: context.repo.owner,
 #   repo: context.repo.repo,
