@@ -16,7 +16,9 @@ jobs:
               owner: 'Henry-Hong',
               repo: 'i-am-not-a-junior-frontend',
               pull_number: 2,
-            })
+            });
+
+            console.log(result);
 
 # github.rest.pulls.listReviewComments({
 #   owner: context.repo.owner,
