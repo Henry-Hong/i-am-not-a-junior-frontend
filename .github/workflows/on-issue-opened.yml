@@ -1,8 +1,8 @@
 name: on issue opened
 
 on:
-  issues:
-    types: [opened]
+  issue_comment:
+    types: [created]
 
 jobs:
   comment:
@@ -16,12 +16,5 @@ jobs:
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: '👋 Thanks for reporting!',
-            })
-
-            github.rest.issues.addLabels({
-              issue_number: context.issue.number,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              labels: ['question', 'good first issue', 'hello world']
+              body: '👋 Thanks for the comment!',
             })
