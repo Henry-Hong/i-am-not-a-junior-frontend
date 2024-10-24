@@ -26,6 +26,8 @@ jobs:
             else return false;
       - name: make-this-pr-to-draft
         if: ${{ steps.check-comment.outputs.result == 'true' }}
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: gh pr ready --undo 2
 # github.rest.pulls.listReviewComments({
 #   owner: context.repo.owner,
