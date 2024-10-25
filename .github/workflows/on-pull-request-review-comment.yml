@@ -17,17 +17,18 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            const reviewComments = await github.rest.pulls.listReviewComments({ 
+            const {data: reviewComments} = await github.rest.pulls.listReviewComments({ 
               owner: context.repo.owner,
               repo: context.repo.repo,
               pull_number: context.issue.number,
-            });
+            }) ?? [];
 
-            console.log("zz",reviewComments);
+            const recentComment = reviewComments.at(-1);
+            const reviewId = recentComment.pull_request_review_id;
+            const reviewCommentsInThisReview = reviewComments.filter(comment => comment.pull_request_review_id === reviewId);
+            const isReviewCommentsContainNIT = reviewCommentsInThisReview.some(comment => comment.body.includes('NTC'));
 
-            const recentComment = result.data?.at(-1).body;
-
-            if(recentComment.includes('NTC')) return true;
+            if(isReviewCommentsContainNIT) return true;
             else return false;
 
       - name: make-this-pr-to-draft
