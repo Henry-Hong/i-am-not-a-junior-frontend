@@ -26,11 +26,11 @@ jobs:
             const recentComment = reviewComments.at(-1);
             const reviewId = recentComment.pull_request_review_id;
             const reviewCommentsInThisReview = reviewComments.filter(comment => comment.pull_request_review_id === reviewId);
-            const isReviewCommentsContainNIT = reviewCommentsInThisReview.some(comment => comment.body.includes('NIT'));
+            const isAllReviewCommentsContainNIT = reviewCommentsInThisReview.every(comment => comment.body.includes('NIT'));
 
-            console.log(isReviewCommentsContainNIT ? "👍🏻 it contains NIT" : "🙇 it does not contain NIT");
+            console.log(isAllReviewCommentsContainNIT ? "👍🏻 it contains NIT" : "🙇 it does not contain NIT");
 
-            if(isReviewCommentsContainNIT) return true;
+            if(isAllReviewCommentsContainNIT) return true;
             else return false;
 
       - name: make-this-pr-to-draft
