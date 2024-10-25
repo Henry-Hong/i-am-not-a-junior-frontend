@@ -25,6 +25,8 @@ jobs:
 
             const recentComment = result.data?.at(-1).body;
 
+            console.log(😎, recentComment);
+
             if(recentComment.includes('NTC')) return true;
             else return false;
 
@@ -33,13 +35,3 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: gh pr ready --undo ${{ github.event.pull_request.number }}
-# github.rest.pulls.listReviewComments({
-#   owner: context.repo.owner,
-#   repo: context.repo.repo,
-#   pull_number: context.issue.number,
-# })
-
-# owner,
-# repo,
-# pull_number,
-# review_id,
