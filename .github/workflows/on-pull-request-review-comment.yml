@@ -35,9 +35,11 @@ jobs:
             for(const comment of reviewCommentsInThisReview) {
               const truncatedComment = comment.body.slice(0, TRUNCATE_COMMENT_LENGTH);
               const isTruncated = comment.body.length > TRUNCATE_COMMENT_LENGTH;
-              console.log(truncatedComment + (isTruncated ? '..' : ''));
+              const isNotContainNIT = !comment.body.includes('NIT');
 
-              if(!comment.body.includes('NIT')) haveAllReviewCommentsContainNIT = false;
+              console.log([isNotContainNIT ? "🙇" : "👍🏻", "Review Comment: ", truncatedComment, isTruncated ? '..' : ''].join(''));
+
+              if(isNotContainNIT) haveAllReviewCommentsContainNIT = false;
             }
 
             console.log(haveAllReviewCommentsContainNIT ? "👍🏻 All review comments contain NIT(Not Important Though)" : "🙇 Some review comments says Need To Change");
