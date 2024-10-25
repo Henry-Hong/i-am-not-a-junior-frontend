@@ -1,4 +1,4 @@
-name: on pull request review comment
+name: 👌 On Pull Request Review
 
 on:
   pull_request_review:
@@ -11,6 +11,7 @@ jobs:
       - name: checkout-branch
         uses: actions/checkout@v3
 
+      # 모든 리뷰코멘트가 NIT을 포함하는지 확인한다.
       - name: check-comment
         id: check-comment
         uses: actions/github-script@v6
@@ -26,13 +27,25 @@ jobs:
             const recentComment = reviewComments.at(-1);
             const reviewId = recentComment.pull_request_review_id;
             const reviewCommentsInThisReview = reviewComments.filter(comment => comment.pull_request_review_id === reviewId);
-            const haveAllReviewCommentsContainNIT = reviewCommentsInThisReview.every(comment => comment.body.includes('NIT'));
+
+            const TRUNCATE_COMMENT_LENGTH = 30;
+
+            let haveAllReviewCommentsContainNIT = true;
+
+            for(const comment of reviewCommentsInThisReview) {
+              const truncatedComment = comment.body.slice(0, TRUNCATE_COMMENT_LENGTH);
+              const isTruncated = comment.body.length > TRUNCATE_COMMENT_LENGTH;
+              console.log(truncatedComment + (isTruncated ? '..' : ''));
+
+              if(!comment.body.includes('NIT')) haveAllReviewCommentsContainNIT = false;
+            }
 
             console.log(haveAllReviewCommentsContainNIT ? "👍🏻 All review comments contain NIT(Not Important Though)" : "🙇 Some review comments says Need To Change");
 
             if(haveAllReviewCommentsContainNIT) return true;
             else return false;
 
+      # 어떤 리뷰 코멘트가 NIT을 포함하지 않는다면, 변경이 필요하므로 PR을 draft 상태로 만든다.
       - name: make-this-pr-to-draft
         if: ${{ steps.check-comment.outputs.result == 'false' }}
         env:
