@@ -27,12 +27,13 @@ jobs:
             const recentComment = reviewComments.at(-1);
             const reviewId = recentComment.pull_request_review_id;
             const reviewCommentsInThisReview = reviewComments.filter(comment => comment.pull_request_review_id === reviewId);
+            const reviewCommentsNotInReply = reviewCommentsInThisReview.filter(comment => comment?.in_reply_to_id == null);
 
             const TRUNCATE_COMMENT_LENGTH = 30;
 
             let haveAllReviewCommentsContainNIT = true;
 
-            for(const comment of reviewCommentsInThisReview) {
+            for(const comment of reviewCommentsNotInReply) {
               const truncatedComment = comment.body.slice(0, TRUNCATE_COMMENT_LENGTH);
               const isTruncated = comment.body.length > TRUNCATE_COMMENT_LENGTH;
               const isNotContainNIT = !comment.body.includes('NIT');
