@@ -25,7 +25,7 @@ jobs:
 
             const recentComment = result.data?.at(-1).body;
 
-            console.log(😎, recentComment);
+            console.log('😎', recentComment);
 
             if(recentComment.includes('NTC')) return true;
             else return false;
