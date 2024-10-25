@@ -1,0 +1,12 @@
+name: on-issue-comment
+
+on:
+  issue_comment:
+    types: [created, edited, deleted]
+
+jobs:
+  comment:
+    runs-on: ubuntu-latest
+    steps:
+      - name: echo
+        run: echo ${{ github.event.issue.body }}

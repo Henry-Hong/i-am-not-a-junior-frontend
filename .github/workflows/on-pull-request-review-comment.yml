@@ -1,4 +1,4 @@
-name: on issue opened
+name: on pull request review comment
 
 on:
   pull_request_review_comment:
@@ -24,8 +24,6 @@ jobs:
             });
 
             const recentComment = result.data?.at(-1).body;
-
-            console.log('😎', recentComment);
 
             if(recentComment.includes('NTC')) return true;
             else return false;

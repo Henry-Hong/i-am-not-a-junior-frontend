@@ -1,0 +1,12 @@
+name: on-pull-request-review
+
+on:
+  pull_request_review:
+    types: [submitted, dismissed]
+
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    steps:
+      - name: echo
+        run: echo ${{ github.event.review.body }}
