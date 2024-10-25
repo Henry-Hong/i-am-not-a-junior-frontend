@@ -38,7 +38,7 @@ jobs:
               const isNotContainNIT = !comment.body.includes('NIT');
 
               const msg = [isNotContainNIT ? "🙇 " : "👍🏻 ", "Review Comment: ", truncatedComment, isTruncated ? '..' : ''].join('');
-              const escapedMsg = msg.replaceAll('\n', '\\n');
+              const escapedMsg = msg.replaceAll('\n', '\\\\n');
               console.log(escapedMsg);
 
               if(isNotContainNIT) haveAllReviewCommentsContainNIT = false;
