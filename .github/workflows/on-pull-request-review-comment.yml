@@ -20,8 +20,8 @@ jobs:
           script: |
             /** For more details how "context object" looks like, see: https://github.com/actions/toolkit/blob/main/packages/github/src/context.ts */
 
-            console.log("context.payload.comment.id", context.payload.comment.id);
-            console.log("anothers", JSON.stringify(context.payload.comment));
+            console.log("context.payload.comment.id", context.payload?.comment?.id);
+            console.log("anothers", JSON.stringify(context.payload?.comment));
 
             const {data: reviewComments} = await github.rest.pulls.listReviewComments({ 
               owner: context.repo.owner,
