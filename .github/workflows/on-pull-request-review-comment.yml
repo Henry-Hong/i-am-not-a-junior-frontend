@@ -20,14 +20,14 @@ jobs:
           script: |
             /** For more details how "context object" looks like, see: https://github.com/actions/toolkit/blob/main/packages/github/src/context.ts */
 
-            console.log("context.payload.comment.id", context.payload?.comment?.id);
-            console.log("anothers", JSON.stringify(context.payload?.comment));
 
             const {data: reviewComments} = await github.rest.pulls.listReviewComments({ 
               owner: context.repo.owner,
               repo: context.repo.repo,
               pull_number: context.issue.number,
-            }) ?? [];
+              }) ?? [];
+              
+            console.log("payload", JSON.stringify(context.payload));
 
             /** For more details how "comment object" looks like, see: https://docs.github.com/ko/rest/pulls/comments?apiVersion=2022-11-28#list-review-comments-on-a-pull-request */
             const recentComment = reviewComments.at(-1);
