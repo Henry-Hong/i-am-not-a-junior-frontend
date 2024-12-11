@@ -5,6 +5,7 @@ import FilterPage from "./pages/FilterPage";
 import ExternalPage from "./pages/ExternalPage";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { createBrowserRouter, Link, RouterProvider } from "react-router-dom";
+import BottomReach from "./BottomReach/index.tsx";
 import CallbackRef from "./pages/CallbackRefPage/index.tsx";
 
 async function enableMocking() {
@@ -36,6 +37,10 @@ const router = createBrowserRouter([
   {
     path: "/external",
     element: <ExternalPage />,
+  },
+  {
+    path: "/bottom-reach",
+    element: <BottomReach />,
   },
   {
     path: "/callback-ref",
