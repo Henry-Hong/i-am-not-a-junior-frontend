@@ -5,6 +5,7 @@ import FilterPage from "./pages/FilterPage";
 import ExternalPage from "./pages/ExternalPage";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { createBrowserRouter, Link, RouterProvider } from "react-router-dom";
+import CallbackRef from "./pages/CallbackRefPage/index.tsx";
 
 async function enableMocking() {
   if (import.meta.env.DEV) {
@@ -35,6 +36,10 @@ const router = createBrowserRouter([
   {
     path: "/external",
     element: <ExternalPage />,
+  },
+  {
+    path: "/callback-ref",
+    element: <CallbackRef />,
   },
 ]);
 
