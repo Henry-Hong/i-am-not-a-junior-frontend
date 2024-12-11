@@ -9,6 +9,7 @@ import 헤드리스_캘린더 from "./헤드리스_캘린더";
 import WINDOW_RESIZE_ANIMATION from "./WINDOW_RESIZE_ANIMATION";
 import FSM from "./FSM";
 import { Link } from "react-router-dom";
+import Debounce from "./Debounce";
 
 function App() {
   return (
@@ -56,6 +57,9 @@ function App() {
 
       {/* Finate State Machine */}
       <FSM />
+
+      {/* useDebounce */}
+      <Debounce />
     </div>
   );
 }
