@@ -7,6 +7,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { createBrowserRouter, Link, RouterProvider } from "react-router-dom";
 import BottomReach from "./BottomReach/index.tsx";
 import CallbackRef from "./pages/CallbackRefPage/index.tsx";
+import CookiePage from "./pages/CookiePage/index.tsx";
 
 async function enableMocking() {
   if (import.meta.env.DEV) {
@@ -45,6 +46,10 @@ const router = createBrowserRouter([
   {
     path: "/callback-ref",
     element: <CallbackRef />,
+  },
+  {
+    path: "/cookie",
+    element: <CookiePage />,
   },
 ]);
 
