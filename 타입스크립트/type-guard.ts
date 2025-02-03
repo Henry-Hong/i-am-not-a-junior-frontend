@@ -42,3 +42,22 @@ if (isButtonMessage(data.message)) {
   data.message.image; // 자동완성해줌
   data.message.text; // 자동완성해줌
 }
+
+// in 을 이용한 type-guard
+const fruit = {
+  apple: "apple",
+  banana: "banana",
+  melon: "melon",
+} as const;
+
+type Fruit = keyof typeof fruit;
+
+const checkIsFruit = (something: string): something is Fruit => {
+  return something in fruit;
+};
+
+const something: string = "apple";
+
+if (checkIsFruit(something)) {
+  const variable = something; // variable -> "apple" | "banana" | "melon"
+}
