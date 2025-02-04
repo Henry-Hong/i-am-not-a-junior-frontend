@@ -8,6 +8,7 @@ import { createBrowserRouter, Link, RouterProvider } from "react-router-dom";
 import BottomReach from "./BottomReach/index.tsx";
 import CallbackRef from "./pages/CallbackRefPage/index.tsx";
 import CookiePage from "./pages/CookiePage/index.tsx";
+import CounterPage from "./pages/Counter/index.tsx";
 
 async function enableMocking() {
   if (import.meta.env.DEV) {
@@ -50,6 +51,10 @@ const router = createBrowserRouter([
   {
     path: "/cookie",
     element: <CookiePage />,
+  },
+  {
+    path: "/counter",
+    element: <CounterPage />,
   },
 ]);
 
