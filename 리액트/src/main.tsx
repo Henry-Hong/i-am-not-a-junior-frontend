@@ -10,6 +10,7 @@ import CallbackRef from "./pages/CallbackRefPage/index.tsx";
 import CookiePage from "./pages/CookiePage/index.tsx";
 import CounterPage from "./pages/Counter/index.tsx";
 import EmailPage from "./pages/Email/index.tsx";
+import ReducerPage from "./pages/Reducer/index.tsx";
 
 async function enableMocking() {
   if (import.meta.env.DEV) {
@@ -60,6 +61,10 @@ const router = createBrowserRouter([
   {
     path: "/email",
     element: <EmailPage />,
+  },
+  {
+    path: "/reducer",
+    element: <ReducerPage />,
   },
 ]);
 
