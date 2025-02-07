@@ -40,16 +40,20 @@ test.describe("카운터", () => {
   test("다 해보기", async ({ page }) => {
     await page.goto("/counter");
 
-    await page.getByRole("button", { name: "plus" }).click();
-    await expect(page.getByRole("textbox")).toHaveValue("1");
+    await test.step("더하기만 먼저", async () => {
+      await page.getByRole("button", { name: "plus" }).click();
+      await expect(page.getByRole("textbox")).toHaveValue("1");
 
-    await page.getByRole("button", { name: "plus" }).click();
-    await expect(page.getByRole("textbox")).toHaveValue("2");
+      await page.getByRole("button", { name: "plus" }).click();
+      await expect(page.getByRole("textbox")).toHaveValue("2");
+    });
 
-    await page.getByRole("button", { name: "minus" }).click();
-    await expect(page.getByRole("textbox")).toHaveValue("1");
+    await test.step("나머지 ", async () => {
+      await page.getByRole("button", { name: "minus" }).click();
+      await expect(page.getByRole("textbox")).toHaveValue("1");
 
-    await page.getByRole("button", { name: "reset" }).click();
-    await expect(page.getByRole("textbox")).toHaveValue("0");
+      await page.getByRole("button", { name: "reset" }).click();
+      await expect(page.getByRole("textbox")).toHaveValue("0");
+    });
   });
 });
