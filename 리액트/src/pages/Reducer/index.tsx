@@ -1,11 +1,11 @@
-import { useReducer } from "react";
+import { useImmerReducer } from "use-immer";
 
 export default function ReducerPage() {
   const initialState = {
     count: 0,
     resetCount: 0,
   };
-  const [state, dispatch] = useReducer(
+  const [state, dispatch] = useImmerReducer(
     (
       state: typeof initialState,
       action: {
@@ -14,9 +14,9 @@ export default function ReducerPage() {
     ) => {
       switch (action.type) {
         case "plus":
-          return { ...state, count: state.count + 1 };
+          return void state.count++;
         case "minus":
-          return { ...state, count: state.count - 1 };
+          return void state.count--;
         case "reset":
           return { ...initialState, resetCount: state.resetCount + 1 };
       }
