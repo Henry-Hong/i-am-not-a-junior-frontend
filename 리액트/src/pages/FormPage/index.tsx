@@ -1,6 +1,6 @@
 import { SubmitHandler, useForm } from "react-hook-form";
 import CaseRenderer from "./CaseRenderer";
-import { ReactNode, useState } from "react";
+import { ChangeEvent, ReactNode, useState } from "react";
 
 export default function FormPage() {
   const [currentCase, setCurrentCase] = useState("plain");
@@ -17,6 +17,11 @@ export default function FormPage() {
           hook: (
             <FormCollections onClick={(type) => setCurrentCase(type)}>
               <ReactHookForm />
+            </FormCollections>
+          ),
+          reset: (
+            <FormCollections onClick={(type) => setCurrentCase(type)}>
+              <ResetForm />
             </FormCollections>
           ),
         }}
@@ -42,6 +47,9 @@ function FormCollections({
         </li>
         <li className="" onClick={() => onClick("hook")}>
           React-Hook-Form
+        </li>
+        <li className="" onClick={() => onClick("reset")}>
+          Reset
         </li>
       </ul>
     </div>
@@ -127,6 +135,75 @@ function ReactHookForm() {
       <p>watch : {allFields.age}</p>
       {errors.age && <p>{errors.age.message}</p>}
       <input type="submit" />
+    </form>
+  );
+}
+
+type IDFields = {
+  idFirstSection: string;
+  idSecondSection: string;
+};
+
+function ResetForm() {
+  const initialState: IDFields = {
+    idFirstSection: "981126",
+    idSecondSection: "",
+  };
+
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { isLoading, isSubmitting, errors },
+  } = useForm<IDFields>({
+    defaultValues: async () => {
+      await new Promise((res) => setTimeout(res, 1000));
+      return initialState;
+    },
+    mode: "onChange",
+  });
+
+  const onSubmit: SubmitHandler<IDFields> = async (e) => {
+    await new Promise((res) => setTimeout(res, 1000));
+    alert(JSON.stringify(e));
+  };
+
+  return (
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <div className="bg-blue-300 flex flex-col">
+        <p>isLoading : {isLoading ? "loading" : "not loading"}</p>
+        <p>isSubmitting : {isSubmitting ? "submitting" : "not submitting"}</p>
+      </div>
+
+      <label>주민등록번호</label>
+      <div className="flex">
+        <input type="number" readOnly {...register("idFirstSection")} />
+        <div>-</div>
+        <input
+          type="number"
+          {...register("idSecondSection", {
+            disabled: isSubmitting || isLoading,
+            maxLength: { value: 6, message: "no longer than 6" },
+            validate: (value) => {
+              const regex = /^[1-9][0-9]*$/g;
+              if (!regex.test(value)) {
+                return "not valid";
+              }
+            },
+            onChange: (e: ChangeEvent<HTMLInputElement>) => {
+              const len = e.currentTarget.value.length;
+              if (len === 7) {
+                handleSubmit(onSubmit)().finally(reset);
+              }
+            },
+          })}
+        />
+        <button>button</button>
+      </div>
+      <div className="flex flex-col bg-red-400">
+        {errors.idFirstSection && <p>{errors.idFirstSection?.message}</p>}
+        {errors.idSecondSection && <p>{errors.idSecondSection?.message}</p>}
+      </div>
     </form>
   );
 }
