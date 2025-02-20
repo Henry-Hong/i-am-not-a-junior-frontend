@@ -12,6 +12,11 @@ import CounterPage from "./pages/Counter/index.tsx";
 import EmailPage from "./pages/Email/index.tsx";
 import ReducerPage from "./pages/Reducer/index.tsx";
 import FormPage from "./pages/FormPage/index.tsx";
+import AsyncPage from "./pages/AsyncPage/index.tsx";
+import PrevPage from "./pages/PrevPage/index.tsx";
+import DisplayNamePage from "./pages/DisplayNamePage/index.tsx";
+import AvatarsPage from "./pages/AvatarsPage/index.tsx";
+import UseEffectsPage from "./pages/UseEffectsPage/index.tsx";
 
 async function enableMocking() {
   if (import.meta.env.DEV) {
@@ -70,6 +75,26 @@ const router = createBrowserRouter([
   {
     path: "/form",
     element: <FormPage />,
+  },
+  {
+    path: "/async",
+    element: <AsyncPage />,
+  },
+  {
+    path: "/prev",
+    element: <PrevPage />,
+  },
+  {
+    path: "/display-name",
+    element: <DisplayNamePage name={"hello fucking world"} />,
+  },
+  {
+    path: "/avatars",
+    element: <AvatarsPage />,
+  },
+  {
+    path: "/use-effects",
+    element: <UseEffectsPage />,
   },
 ]);
 
