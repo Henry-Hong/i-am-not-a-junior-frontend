@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>hello world!!</h1>
+
+    <script>
+      const range = document.createRange();
+      const h1 = document.querySelector("h1");
+
+      range.setStart(h1.firstChild, 0);
+      range.setEnd(h1.firstChild, h1.firstChild.length);
+
+      document.addEventListener("mouseup", (e) => {
+        const selection = document.getSelection();
+        if (selection.isCollapsed) return;
+
+        const range = selection.getRangeAt(0);
+        const startOffset = range.startOffset;
+        const endOffset = range.endOffset;
+
+        console.log(
+          `Range: Start Offset(${startOffset}), End Offset(${endOffset})`
+        );
+
+        // toggle case
+        // const range = selection.getRangeAt(0);
+        // const selectedText = range.toString();
+
+        // const convertedText = selectedText
+        //   .split("")
+        //   .map((ch) => {
+        //     const charCode = ch.charCodeAt(0);
+        //     const A = 65;
+        //     const Z = 90;
+        //     const a = 97;
+        //     const z = 122;
+        //     const offset = 32;
+        //     if (A <= charCode && charCode <= Z)
+        //       return String.fromCharCode(charCode + offset); // touppercase
+        //     else if (a <= charCode && charCode <= z)
+        //       return String.fromCharCode(charCode - offset); // tolowercase
+        //     else return ch;
+        //   })
+        //   .join("");
+
+        // range.deleteContents();
+        // range.insertNode(document.createTextNode(convertedText));
+
+        // 셀렉션 스피커로 말하깅
+        // const text = selection.toString();
+        // const utterance = new SpeechSynthesisUtterance(text);
+        // window.speechSynthesis.speak(utterance);
+      });
+    </script>
+  </body>
+</html>
