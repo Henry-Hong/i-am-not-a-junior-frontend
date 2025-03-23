@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <img alt="img" />
+    <button onclick="create()">create</button>
+    <button onclick="revoke()">revoke</button>
+  </body>
+  <script>
+    const imgElement = document.querySelector("img");
+
+    const create = () => {
+      const imgUrl = `https://images-assets.nasa.gov/image/AFRC2024-0159-16/AFRC2024-0159-16~orig.jpg`;
+
+      fetch(imgUrl).then(async (res) => {
+        const response = await res.blob();
+        const DOMString = URL.createObjectURL(response);
+        console.log({ DOMString }); // blob:http://127.0.0.1:5500/8816a60d-c8a5-4d80-bb4a-daeb0cbd5b09
+        imgElement.src = DOMString;
+      });
+    };
+
+    const revoke = () => {
+      if (DOMString) URL.revokeObjectURL(DOMString);
+    };
+  </script>
+  <script>
+    (async () => {
+      if (!window.crossOriginIsolated) {
+        console.log(
+          "performance.measureUserAgentSpecificMemory() is only available in cross-origin-isolated pages"
+        );
+      } else if (!performance.measureUserAgentSpecificMemory) {
+        console.log(
+          "performance.measureUserAgentSpecificMemory() is not available in this browser"
+        );
+      } else {
+        let result;
+        try {
+          result = await performance.measureUserAgentSpecificMemory();
+        } catch (error) {
+          if (error instanceof DOMException && error.name === "SecurityError") {
+            console.log("The context is not secure.");
+          } else {
+            throw error;
+          }
+        }
+        console.log(result);
+      }
+    })();
+  </script>
+</html>

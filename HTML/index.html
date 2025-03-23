@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="test-slot">
+      <!-- Light DOM -->
+      <!-- span with slot attribute is "source" -->
+      <span slot="title">Hello</span>
+      <span slot="desc">world</span>
+    </div>
+
+    <script>
+      // Shadow DOM
+      // slot with name attribute is "destination"
+      const testSlot = document.querySelector("#test-slot");
+      const shadowRoot = testSlot.attachShadow({ mode: "open" });
+      shadowRoot.innerHTML = `
+            <h1>
+              <slot name="title"></slot>
+            </h1>
+            <p>
+              <slot name="desc"></slot>
+            </p>
+      `;
+      console.log("shadowRoot", shadowRoot);
+    </script>
+  </body>
+</html>

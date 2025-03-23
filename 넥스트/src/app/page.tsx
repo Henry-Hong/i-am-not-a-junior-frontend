@@ -1,6 +1,33 @@
+"use client";
+
 import Image from "next/image";
+import { useRef } from "react";
+
+/**
+ * {@link }
+ */
+function test() {}
 
 export default function Home() {
+  const imageRef = useRef();
+
+  let DOMString: string;
+  let blob: Blob;
+
+  const handleCreate = () => {
+    if (!imageRef.current) return;
+    const imgUrl = `https://images-assets.nasa.gov/image/AFRC2024-0159-16/AFRC2024-0159-16~orig.jpg`;
+    fetch(imgUrl).then(async (res) => {
+      const response = await res.blob();
+      blob = response;
+    });
+  };
+
+  const handleRevoke = () => {
+    if (!imageRef.current) return;
+    URL.revokeObjectURL(DOMString);
+  };
+
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
@@ -8,6 +35,15 @@ export default function Home() {
           Get started by editing&nbsp;
           <code className="font-mono font-bold">src/app/page.tsx</code>
         </p>
+        <img
+          ref={imageRef}
+          alt="img"
+          src={
+            "https://images-assets.nasa.gov/image/AFRC2024-0159-16/AFRC2024-0159-16~orig.jpg"
+          }
+        />
+        <button onClick={handleCreate}>create</button>
+        <button onClick={handleRevoke}>revoke</button>
         <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:size-auto lg:bg-none">
           <a
             className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
