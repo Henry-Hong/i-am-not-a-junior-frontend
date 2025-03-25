@@ -17,6 +17,12 @@ import PrevPage from "./pages/PrevPage/index.tsx";
 import DisplayNamePage from "./pages/DisplayNamePage/index.tsx";
 import AvatarsPage from "./pages/AvatarsPage/index.tsx";
 import UseEffectsPage from "./pages/UseEffectsPage/index.tsx";
+import ExternalEasyPage from "./pages/ExternalEasyPage/index.tsx";
+import LazyInitializationPage from "./pages/LazyInitializationPage/index.tsx";
+import DataAttributePage from "./pages/DataAttribute/index.tsx";
+import GridPage from "./pages/GridPage/index.tsx";
+import ChildrenPage from "./pages/ChildrenPage/index.tsx";
+import FocusPage from "./pages/FocusPage/index.tsx";
 
 async function enableMocking() {
   if (import.meta.env.DEV) {
@@ -47,6 +53,10 @@ const router = createBrowserRouter([
   {
     path: "/external",
     element: <ExternalPage />,
+  },
+  {
+    path: "/external-easy",
+    element: <ExternalEasyPage />,
   },
   {
     path: "/bottom-reach",
@@ -95,6 +105,26 @@ const router = createBrowserRouter([
   {
     path: "/use-effects",
     element: <UseEffectsPage />,
+  },
+  {
+    path: "/lazy-initialize",
+    element: <LazyInitializationPage />,
+  },
+  {
+    path: "/data-attribute",
+    element: <DataAttributePage />,
+  },
+  {
+    path: "/grid",
+    element: <GridPage />,
+  },
+  {
+    path: "/children",
+    element: <ChildrenPage />,
+  },
+  {
+    path: "/focus",
+    element: <FocusPage />,
   },
 ]);
 
