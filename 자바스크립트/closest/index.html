@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="example">
+      Hello <span style="display: none">World</span>
+      <script>
+        alert("hi");
+      </script>
+    </div>
+    <article>
+      <h1>hello</h1>
+
+      <table>
+        <tbody>
+          <tr>
+            <td>data</td>
+          </tr>
+        </tbody>
+      </table>
+    </article>
+  </body>
+
+  <script>
+    const td = document.querySelector("td");
+    const table = td.closest("table");
+
+    console.log({ td, table });
+
+    console.log(document.getElementById("example").textContent);
+    // 출력: "Hello World\nalert(\"hi\");"
+  </script>
+</html>
