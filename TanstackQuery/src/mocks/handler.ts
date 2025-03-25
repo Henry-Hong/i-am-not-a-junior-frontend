@@ -16,4 +16,10 @@ export const handlers = [
       statusText: "you are not found",
     });
   }),
+  http.get("/cache-and-stale-time", async () => {
+    await delay(500);
+    return HttpResponse.json({
+      data: `cache-and-stale-time, ${new Date().toISOString()}`,
+    });
+  }),
 ];
