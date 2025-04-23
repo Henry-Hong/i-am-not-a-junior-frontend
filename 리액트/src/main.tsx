@@ -21,6 +21,7 @@ import ExternalEasyPage from "./pages/ExternalEasyPage/index.tsx";
 import LazyInitializationPage from "./pages/LazyInitializationPage/index.tsx";
 import DataAttributePage from "./pages/DataAttribute/index.tsx";
 import ChildrenPage from "./pages/ChildrenPage/index.tsx";
+import CountUpPage from "./pages/CountUpPage/index.tsx";
 
 async function enableMocking() {
   if (import.meta.env.DEV) {
@@ -115,6 +116,10 @@ const router = createBrowserRouter([
   {
     path: "/children",
     element: <ChildrenPage />,
+  },
+  {
+    path: "/count-up",
+    element: <CountUpPage />,
   },
 ]);
 
