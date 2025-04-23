@@ -1,4 +1,5 @@
 import TestMultipleQueries from "./pages/TestMultipleQueries";
+import TestQueryFnAlwaysSuccess from "./pages/TestQueryFnAlwaysSuccess";
 import { TestStaleAndCacheTime } from "./pages/TestStaleAndCacheTime";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
@@ -10,6 +11,10 @@ const router = createBrowserRouter([
   {
     path: "/test-multiple-queries",
     element: <TestMultipleQueries />,
+  },
+  {
+    path: "/test-queryfn-always-success",
+    element: <TestQueryFnAlwaysSuccess />,
   },
 ]);
 
