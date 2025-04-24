@@ -1,5 +1,6 @@
 import TestMultipleQueries from "./pages/TestMultipleQueries";
 import TestQueryFnAlwaysSuccess from "./pages/TestQueryFnAlwaysSuccess";
+import TestUserSpecificErrorCode from "./pages/TestUserSpecificErrorCode";
 import { TestStaleAndCacheTime } from "./pages/TestStaleAndCacheTime";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
@@ -15,6 +16,10 @@ const router = createBrowserRouter([
   {
     path: "/test-queryfn-always-success",
     element: <TestQueryFnAlwaysSuccess />,
+  },
+  {
+    path: "/test-user-specific-error-code",
+    element: <TestUserSpecificErrorCode />,
   },
 ]);
 
