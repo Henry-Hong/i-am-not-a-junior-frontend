@@ -22,6 +22,7 @@ import LazyInitializationPage from "./pages/LazyInitializationPage/index.tsx";
 import DataAttributePage from "./pages/DataAttribute/index.tsx";
 import ChildrenPage from "./pages/ChildrenPage/index.tsx";
 import CountUpPage from "./pages/CountUpPage/index.tsx";
+import ScrollPage from "./pages/ScrollPage/index.tsx";
 
 async function enableMocking() {
   if (import.meta.env.DEV) {
@@ -120,6 +121,10 @@ const router = createBrowserRouter([
   {
     path: "/count-up",
     element: <CountUpPage />,
+  },
+  {
+    path: "/scroll",
+    element: <ScrollPage />,
   },
 ]);
 
