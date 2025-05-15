@@ -1,18 +1,22 @@
 /**
  * satisfies
- * - 느낌으로 이해하기
- * - as의 약한버전이다.
  * - 기존 리턴타입을 제대로 추론하지 못한 타입스크립트의 문제를 해결함
- *    - 리턴타입을 제대로 추론하기 위해 타입단언(as) 타입선언(:)없이 타입 자동추론을 활용하더라도 typo를 체크하지못함
+ *    - 리턴타입을 제대로 추론하기 위해 1. 타입단언(as) 2. 타입선언(:) 대신 타입 자동추론을 활용하더라도 typo를 체크하지못함
  *    - 결국엔 satisfies 를 활용해서 해결
  * - as로는 못한 missing field 찾기 -> storybook에서 적극활용중
+ *
+ * 결론
+ * 1. 보통은 as를 많이쓰지 -> field 누락가능성
+ * 2. 그러면 Record를 쓰면되지 -> 명확한 타입추론이 불가능
+ * 3. 그러면 아무것도 하지말고 자동추론하자 -> typo 체크 불가능
+ * 4. satisfies 쓰자.
  */
 
 const human = {
   name: "hhr",
   age: 27,
   family: ["mom", "dad", "sister", "brother"],
-};
+} as Human;
 
 // 1. human의 타입 선언 / 단언이 없다.
 // 2. human의 타입을 추론한다.
@@ -57,6 +61,8 @@ human3.family.forEach((member) => console.log(member));
 // as보다는 satisfies를 사용하는 것이 좋다.
 // 결과적으로 as 사용할때는 args의 missing field를 잡아 내지 못했지만,
 // satisfies를 사용하면 missing field를 잡아낸다.
+
+const human4 = {} as Human; // as 단언은, missing field 를 잡아내지 못한다.
 
 /**
  * 
