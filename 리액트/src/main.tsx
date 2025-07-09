@@ -126,6 +126,10 @@ const router = createBrowserRouter([
     path: "/scroll",
     element: <ScrollPage />,
   },
+  {
+    path: "/idle",
+    element: <IdlePage />,
+  },
 ]);
 
 enableMocking().then(() =>
