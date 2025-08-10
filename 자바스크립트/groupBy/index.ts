@@ -6,7 +6,10 @@ const array = [
   { name: "fish", type: "meat", quantity: 22 },
 ];
 
-const groupBy = <T>(iterables: T[], callback: (iter: T) => string) => {
+const groupByTS = <T extends Record<string, any>>(
+  iterables: T[],
+  callback: (iter: T) => string
+) => {
   const map = new Map<ReturnType<typeof callback>, T[]>();
   for (const iter of iterables) {
     const newKey = callback(iter);
@@ -18,5 +21,5 @@ const groupBy = <T>(iterables: T[], callback: (iter: T) => string) => {
   return Object.fromEntries(map); //  return map; 처럼 그냥 사용해도 괜찮을듯.
 };
 
-const result1 = groupBy(array, (iter) => iter.type);
+const result1 = groupByTS(array, (iter) => iter.type);
 console.log(result1);
