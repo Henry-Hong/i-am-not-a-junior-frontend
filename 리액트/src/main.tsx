@@ -1,3 +1,4 @@
+import { useId } from "react";
 import "./index.css";
 import ReactDOM from "react-dom/client";
 import App from "./App.tsx";
@@ -185,3 +186,26 @@ enableMocking().then(() =>
     </QueryClientProvider>
   )
 );
+
+/**
+ * https://react.dev/reference/react/useId#specifying-a-shared-prefix-for-all-generated-ids
+ * useId, identifierPrefix로 html wrong matching 해결하기
+ */
+ReactDOM.createRoot(document.getElementById("root-a")!, {
+  identifierPrefix: "identifier1",
+}).render(<Inputs />);
+ReactDOM.createRoot(document.getElementById("root-b")!, {
+  identifierPrefix: "identifier2",
+}).render(<Inputs />);
+
+function Inputs() {
+  const id = useId();
+  return (
+    <>
+      <label className="border-2 border-black w-10" htmlFor={`${id}-name`}>
+        label
+      </label>
+      <input className="border-2 border-black w-96" id={`${id}-name`} />
+    </>
+  );
+}
