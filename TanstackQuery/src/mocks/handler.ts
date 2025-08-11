@@ -22,4 +22,22 @@ export const handlers = [
       data: `cache-and-stale-time, ${new Date().toISOString()}`,
     });
   }),
+  http.get("/fetch-and-prefetch", async () => {
+    await delay(1000);
+    return HttpResponse.json({
+      data: "fetch-and-prefetch",
+    });
+  }),
+  http.get("/fetch-query-and-ensure-query-data/:type", async ({ params }) => {
+    await delay(1000);
+    return HttpResponse.json({
+      data: `fetch-query-and-ensure-query-data, ${JSON.stringify(params)}`,
+    });
+  }),
+  http.get("/invalidation", async () => {
+    await delay(1000);
+    return HttpResponse.json({
+      data: "invalidation",
+    });
+  }),
 ];

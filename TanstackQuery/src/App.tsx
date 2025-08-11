@@ -8,6 +8,8 @@ import TestSuspenseQuery from "./pages/TestSuspenseQuery";
 import TestFetchAndPrefetch from "./pages/TestFetchAndPrefetch";
 import TestFetchQueryAndEnsureQueryData from "./pages/TestFetchQueryAndEnsureQueryData";
 import TestLoadingAndInitialLoading from "./pages/TestLoadingAndInitialLoading";
+import TestInvalidation from "./pages/TestInvalidation";
+
 const router = createBrowserRouter([
   {
     path: "/test-stale-and-cache-time",
@@ -45,6 +47,9 @@ const router = createBrowserRouter([
     path: "/test-loading-and-initial-loading",
     element: <TestLoadingAndInitialLoading />,
   },
+  {
+    path: "/test-invalidation",
+    element: <TestInvalidation />,
   },
 ]);
 
