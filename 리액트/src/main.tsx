@@ -27,6 +27,7 @@ import KeyAsIndexPage from "./pages/KeyAsIndex/index.tsx";
 import ArrayStatePage from "./pages/ArrayStatePage/index.tsx";
 import SameStatePage from "./pages/SameStatePage/index.tsx";
 import FontPage from "./pages/FontPage/index.tsx";
+import ContextPage from "./pages/ContextPage/index.tsx";
 
 async function enableMocking() {
   if (import.meta.env.DEV) {
@@ -149,6 +150,10 @@ const router = createBrowserRouter([
   {
     path: "/font",
     element: <FontPage />,
+  },
+  {
+    path: "/context",
+    element: <ContextPage />,
   },
 ]);
 
