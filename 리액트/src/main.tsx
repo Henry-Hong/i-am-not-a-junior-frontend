@@ -29,6 +29,7 @@ import SameStatePage from "./pages/SameStatePage/index.tsx";
 import FontPage from "./pages/FontPage/index.tsx";
 import ContextPage from "./pages/ContextPage/index.tsx";
 import ANRPage from "./pages/ANRPage/index.tsx";
+import AtomPage from "./pages/AtomPage/index.tsx";
 
 async function enableMocking() {
   if (import.meta.env.DEV) {
@@ -159,6 +160,10 @@ const router = createBrowserRouter([
   {
     path: "/anr",
     element: <ANRPage />,
+  },
+  {
+    path: "/atom",
+    element: <AtomPage />,
   },
 ]);
 
