@@ -26,6 +26,7 @@ import ScrollPage from "./pages/ScrollPage/index.tsx";
 import KeyAsIndexPage from "./pages/KeyAsIndex/index.tsx";
 import ArrayStatePage from "./pages/ArrayStatePage/index.tsx";
 import SameStatePage from "./pages/SameStatePage/index.tsx";
+import FontPage from "./pages/FontPage/index.tsx";
 
 async function enableMocking() {
   if (import.meta.env.DEV) {
@@ -144,6 +145,10 @@ const router = createBrowserRouter([
   {
     path: "/same-state",
     element: <SameStatePage />,
+  },
+  {
+    path: "/font",
+    element: <FontPage />,
   },
 ]);
 
