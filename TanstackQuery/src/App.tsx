@@ -7,6 +7,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import TestSuspenseQuery from "./pages/TestSuspenseQuery";
 import TestFetchAndPrefetch from "./pages/TestFetchAndPrefetch";
 import TestFetchQueryAndEnsureQueryData from "./pages/TestFetchQueryAndEnsureQueryData";
+import TestLoadingAndInitialLoading from "./pages/TestLoadingAndInitialLoading";
 const router = createBrowserRouter([
   {
     path: "/test-stale-and-cache-time",
@@ -39,6 +40,11 @@ const router = createBrowserRouter([
   {
     path: "/test-fetch-query-and-ensure-query-data",
     element: <TestFetchQueryAndEnsureQueryData />,
+  },
+  {
+    path: "/test-loading-and-initial-loading",
+    element: <TestLoadingAndInitialLoading />,
+  },
   },
 ]);
 
