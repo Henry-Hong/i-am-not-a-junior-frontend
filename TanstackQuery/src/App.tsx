@@ -4,6 +4,7 @@ import TestUserSpecificErrorCode from "./pages/TestUserSpecificErrorCode";
 import { TestStaleAndCacheTime } from "./pages/TestStaleAndCacheTime";
 import TestRefetchAfterMutation from "./pages/TestRefetchAfterMutation";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import TestSuspenseQuery from "./pages/TestSuspenseQuery";
 const router = createBrowserRouter([
   {
     path: "/test-stale-and-cache-time",
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
   {
     path: "/test-refetch-after-mutation",
     element: <TestRefetchAfterMutation />,
+  },
+  {
+    path: "/test-suspense-query",
+    element: <TestSuspenseQuery />,
   },
 ]);
 
