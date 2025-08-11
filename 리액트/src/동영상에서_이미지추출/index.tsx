@@ -28,6 +28,15 @@ export default function 동영상에서_이미지추출() {
     });
   };
 
+  const download = () => {
+    const canvas = canvasRef.current;
+    canvas?.toBlob((blob) => {
+      if (!blob) return;
+      const objectUrl = URL.createObjectURL(blob);
+      window.open(objectUrl, "_blank");
+    });
+  };
+
   return (
     <>
       <video ref={videoRef} controls>
@@ -38,6 +47,7 @@ export default function 동영상에서_이미지추출() {
       <canvas ref={canvasRef}></canvas>
 
       <img src={imageSrc}></img>
+      <button onClick={download}>download</button>
     </>
   );
 }
