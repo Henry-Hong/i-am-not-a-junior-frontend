@@ -37,4 +37,13 @@ export const handlers = [
     }
     return HttpResponse.json({ ...classes.get(classId) });
   }),
+  http.get("/cancel-fetch", async ({ params }) => {
+    await delay(3000);
+    return HttpResponse.json({ value: "this is cancel fetch response" });
+    // return HttpResponse.error();
+  }),
+  http.post("/cancel-fetch", async ({ params }) => {
+    return HttpResponse.json({ value: "hello world".repeat(40000000) });
+    // return HttpResponse.error();
+  }),
 ];

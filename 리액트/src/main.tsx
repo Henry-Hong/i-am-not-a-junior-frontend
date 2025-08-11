@@ -32,6 +32,7 @@ import ContextPage from "./pages/ContextPage/index.tsx";
 import ANRPage from "./pages/ANRPage/index.tsx";
 import AtomPage from "./pages/AtomPage/index.tsx";
 import AIPage from "./pages/AIPage/inde.tsx";
+import CancelFetchPage from "./pages/CancelFetchPage/index.tsx";
 
 async function enableMocking() {
   if (import.meta.env.DEV) {
@@ -170,6 +171,10 @@ const router = createBrowserRouter([
   {
     path: "/ai",
     element: <AIPage />,
+  },
+  {
+    path: "/cancel-fetch",
+    element: <CancelFetchPage />,
   },
 ]);
 
