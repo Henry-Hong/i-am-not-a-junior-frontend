@@ -25,6 +25,7 @@ import CountUpPage from "./pages/CountUpPage/index.tsx";
 import ScrollPage from "./pages/ScrollPage/index.tsx";
 import KeyAsIndexPage from "./pages/KeyAsIndex/index.tsx";
 import ArrayStatePage from "./pages/ArrayStatePage/index.tsx";
+import SameStatePage from "./pages/SameStatePage/index.tsx";
 
 async function enableMocking() {
   if (import.meta.env.DEV) {
@@ -139,6 +140,10 @@ const router = createBrowserRouter([
   {
     path: "/array-state",
     element: <ArrayStatePage />,
+  },
+  {
+    path: "/same-state",
+    element: <SameStatePage />,
   },
 ]);
 
