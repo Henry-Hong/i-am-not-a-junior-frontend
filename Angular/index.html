@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html ng-app="todoApp" lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="index.js"></script>
+  </head>
+  <body ng-controller="TodoController">
+    <h1>TODO List</h1>
+    <h3>{{ message }}</h3>
+
+    <!-- 양방향 바인딩 : 사용자입력 <-> JS 변수 -->
+    <!-- JS 변수 바꾸면 사용자 입력도 달라지겠네? -->
+    <input type="text" ng-model="newTodo" />
+    <p>입력값 : {{ newTodo }}</p>
+
+    <button ng-click="changeInput()">입력값 바꾸기</button>
+
+    <ul>
+      <todo-item
+        on-remove="removeTodo($index)"
+        ng-repeat="todo in todos"
+        todo="todo"
+      ></todo-item>
+      <!-- <li ng-repeat="todo in todos">
+        <input type="checkbox" ng-model="todo.done" />
+        <span ng-class="{'done':todo.done}">{{ todo.text }}</span>
+        <button ng-click="removeTodo($index)">삭제</button>
+      </li> -->
+    </ul>
+
+    <form ng-submit="addTodo()">
+      <input type="text" ng-model="todo" required />
+      <button>추가</button>
+    </form>
+
+    <button ng-click="showOutputs()">show me the outputs</button>
+  </body>
+
+  <style>
+    .done {
+      text-decoration: line-through;
+      color: gray;
+    }
+  </style>
+</html>
