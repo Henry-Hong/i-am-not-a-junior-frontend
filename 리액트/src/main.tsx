@@ -28,6 +28,7 @@ import ArrayStatePage from "./pages/ArrayStatePage/index.tsx";
 import SameStatePage from "./pages/SameStatePage/index.tsx";
 import FontPage from "./pages/FontPage/index.tsx";
 import ContextPage from "./pages/ContextPage/index.tsx";
+import ANRPage from "./pages/ANRPage/index.tsx";
 
 async function enableMocking() {
   if (import.meta.env.DEV) {
@@ -154,6 +155,10 @@ const router = createBrowserRouter([
   {
     path: "/context",
     element: <ContextPage />,
+  },
+  {
+    path: "/anr",
+    element: <ANRPage />,
   },
 ]);
 
