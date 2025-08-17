@@ -1,7 +1,7 @@
 {
   "core": {
     "workingDir": ".reg",
-    "actualDir": "directory_contains_actual_images",
+    "actualDir": "",
     "thresholdRate": 0,
     "addIgnore": true,
     "ximgdiff": {
