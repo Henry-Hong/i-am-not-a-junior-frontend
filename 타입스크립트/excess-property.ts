@@ -19,3 +19,20 @@ const human1: Human = {
 
 const tmp = human1;
 const human2: Human = tmp; // 에러발생 X
+
+// 구조적 서브타이핑 (Width)
+type Animal = { age: number };
+type Dog = { age: number; bark: Function };
+
+let animal: Animal = { age: 10 };
+let dog: Dog = { age: 10, bark: () => {} };
+
+// 구조적 서브타이핑 (Depth)
+type A = { name: string };
+type B = { name: "hello" };
+
+let a: A = { name: "hello" };
+let b: B = { name: "hello" };
+
+a = b; // 가능. 필요한 객체 속성을 모두 지니고 있고, 그 속성의 타입도 호환된다.
+b = a; // 'string' 형식은 '"hello"' 형식에 할당할 수 없습니다. 결국

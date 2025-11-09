@@ -9,6 +9,9 @@ import TestFetchAndPrefetch from "./pages/TestFetchAndPrefetch";
 import TestFetchQueryAndEnsureQueryData from "./pages/TestFetchQueryAndEnsureQueryData";
 import TestLoadingAndInitialLoading from "./pages/TestLoadingAndInitialLoading";
 import TestInvalidation from "./pages/TestInvalidation";
+import TestErrorUpdatedCount from "./pages/TestErrorUpdatedCount";
+import TestEnabledFalse from "./pages/TestEnabledFalse";
+import SamplePage from "./pages/Sample";
 
 const router = createBrowserRouter([
   {
@@ -50,6 +53,18 @@ const router = createBrowserRouter([
   {
     path: "/test-invalidation",
     element: <TestInvalidation />,
+  },
+  {
+    path: "/test-error-updated-count",
+    element: <TestErrorUpdatedCount />,
+  },
+  {
+    path: "/test-enabled-false",
+    element: <TestEnabledFalse />,
+  },
+  {
+    path: "/sample",
+    element: <SamplePage />,
   },
 ]);
 

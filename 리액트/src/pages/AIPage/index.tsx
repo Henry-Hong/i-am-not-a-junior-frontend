@@ -4,7 +4,7 @@ import { createOpenAI } from "@ai-sdk/openai";
 import { generateText } from "ai";
 
 const openai = createOpenAI({
-  apiKey: process.env.OPENAI_KEY,
+  apiKey: typeof process !== "undefined" ? process.env.OPENAI_KEY : "",
 });
 
 export async function fetchAzureChatCompletion({
@@ -13,7 +13,7 @@ export async function fetchAzureChatCompletion({
   messages: string;
 }) {
   const azure = createAzure({
-    apiKey: process.env.AZURE_KEY,
+    apiKey: typeof process !== "undefined" ? process.env.AZURE_KEY : "",
     resourceName: "santa-toeic-cms",
   });
   const { text } = await generateText({

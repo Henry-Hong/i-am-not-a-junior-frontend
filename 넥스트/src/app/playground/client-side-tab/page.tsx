@@ -2,8 +2,17 @@
 
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
+import { Suspense } from "react";
 
 export default function Playground() {
+  return (
+    <Suspense>
+      <Tab />
+    </Suspense>
+  );
+}
+
+function Tab() {
   const CONST_TABS = ["apple", "banana", "cherry"];
   const searchParams = useSearchParams();
   const tab = searchParams.get("tab") ?? "apple";

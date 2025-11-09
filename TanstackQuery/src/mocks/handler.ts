@@ -40,4 +40,18 @@ export const handlers = [
       data: "invalidation",
     });
   }),
+  http.get("/test-error-updated-count", async () => {
+    await delay(1000);
+    return new HttpResponse(null, {
+      status: 404,
+      statusText: "not found error",
+    });
+  }),
+  http.get("/test-enabled-false", async () => {
+    await delay(1000);
+    return new HttpResponse(null, {
+      status: 404,
+      statusText: "you are failed",
+    });
+  }),
 ];

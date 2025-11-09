@@ -1,4 +1,6 @@
 import { useId } from "react";
+import { DevTools } from "jotai-devtools";
+import "jotai-devtools/styles.css";
 import "./index.css";
 import ReactDOM from "react-dom/client";
 import App from "./App.tsx";
@@ -32,8 +34,12 @@ import FontPage from "./pages/FontPage/index.tsx";
 import ContextPage from "./pages/ContextPage/index.tsx";
 import ANRPage from "./pages/ANRPage/index.tsx";
 import AtomPage from "./pages/AtomPage/index.tsx";
-import AIPage from "./pages/AIPage/inde.tsx";
+import AIPage from "./pages/AIPage/index.tsx";
 import CancelFetchPage from "./pages/CancelFetchPage/index.tsx";
+import JotaiPage from "./pages/JotaiPage/index.tsx";
+import DnDPage from "./pages/DnDPage/index.tsx";
+import JotaiEffectPage from "./pages/JotaiEffectPage/index.tsx";
+import ReactQueryThrow from "./pages/ReactQueryThrow/index.tsx";
 
 async function enableMocking() {
   if (import.meta.env.DEV) {
@@ -177,13 +183,32 @@ const router = createBrowserRouter([
     path: "/cancel-fetch",
     element: <CancelFetchPage />,
   },
+  {
+    path: "/jotai",
+    element: <JotaiPage />,
+  },
+  {
+    path: "/dnd",
+    element: <DnDPage />,
+  },
+  {
+    path: "/jotai-effect",
+    element: <JotaiEffectPage />,
+  },
+  {
+    path: "/react-query-throw",
+    element: <ReactQueryThrow />,
+  },
 ]);
 
 enableMocking().then(() =>
   ReactDOM.createRoot(document.getElementById("root")!).render(
-    <QueryClientProvider client={queryClient}>
-      <RouterProvider router={router} />
-    </QueryClientProvider>
+    <>
+      <DevTools />
+      <QueryClientProvider client={queryClient}>
+        <RouterProvider router={router} />
+      </QueryClientProvider>
+    </>
   )
 );
 
@@ -191,12 +216,12 @@ enableMocking().then(() =>
  * https://react.dev/reference/react/useId#specifying-a-shared-prefix-for-all-generated-ids
  * useId, identifierPrefix로 html wrong matching 해결하기
  */
-ReactDOM.createRoot(document.getElementById("root-a")!, {
-  identifierPrefix: "identifier1",
-}).render(<Inputs />);
-ReactDOM.createRoot(document.getElementById("root-b")!, {
-  identifierPrefix: "identifier2",
-}).render(<Inputs />);
+// ReactDOM.createRoot(document.getElementById("root-a")!, {
+//   identifierPrefix: "identifier1",
+// }).render(<Inputs />);
+// ReactDOM.createRoot(document.getElementById("root-b")!, {
+//   identifierPrefix: "identifier2",
+// }).render(<Inputs />);
 
 function Inputs() {
   const id = useId();

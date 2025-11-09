@@ -46,4 +46,26 @@ export const handlers = [
     return HttpResponse.json({ value: "hello world".repeat(40000000) });
     // return HttpResponse.error();
   }),
+  http.get(`/react-query-throw`, async ({ params }) => {
+    if (count <= 5) {
+      count += 1;
+      return HttpResponse.json(
+        {
+          code: "not-ready",
+          message: `not ready ${count}`,
+        },
+        { status: 404 }
+      );
+    }
+
+    return HttpResponse.json(
+      {
+        code: "timeout",
+        message: `timeout ${count}`,
+      },
+      { status: 404 }
+    );
+  }),
 ];
+
+let count = 1;

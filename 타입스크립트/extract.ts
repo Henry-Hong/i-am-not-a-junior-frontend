@@ -9,7 +9,30 @@
  * never는 Union 타입에서 삭제된다. ("a" | "b" | never === "a" | "b")
  */
 
+type Types =
+  | {
+      type: "type-a";
+      payload: {
+        a: number;
+      };
+    }
+  | {
+      type: "type-b";
+      payload: {
+        b: string;
+      };
+    }
+  | {
+      type: "type-c";
+      payload: {
+        c: boolean;
+      };
+    };
+
 type MyExtract<T, P extends T> = P extends T ? T : never;
 
-type extracted1 = MyExtract<"a" | "b" | "c", "a">; // 인텔리젠스 O
-type extracted2 = Extract<"a" | "b" | "c", "a">; // 인텔리젠스 X
+type Extracted1 = MyExtract<"a" | "b" | "c", "a">; // 인텔리젠스 O
+type Extracted2 = Extract<"a" | "b" | "c", "a">; // 인텔리젠스 X
+
+type Extracted3 = Extract<Types, { type: "type-a" }>["payload"];
+const extracted3: Extracted3 = { a: 2 }; // payload 가 pattern matching 되어, `{a : number}`로 잘 좁혀짐.

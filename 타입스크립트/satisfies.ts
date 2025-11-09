@@ -88,3 +88,38 @@ export const Primary: Story = {
   },
 };
  */
+
+// 추가로, satisfies 는 literal 을 유지한다.
+// 뭐 그냥 type inference 결과를 덮어쓰지 않는다라는 공통된 개념이긴 한데
+// 이런 경우도 있다는걸 알려주고 싶었다.
+type Route = { path: string; method: "GET" | "POST" };
+const routes = {
+  home: { path: "/", method: "GET" },
+  upload: { path: "/upload", method: "POST" },
+} satisfies Record<string, Route>;
+
+// routes.home.method === "GET"; // 가능
+// routes.home.method === "POST"; // 불가능. 근데 annotation 썼으면 됨.
+
+function keys1<T extends Record<PropertyKey, unknown>>(obj: T): (keyof T)[] {
+  return Object.keys(obj) as (keyof T)[];
+}
+
+function keys2<T extends string>(obj: Record<T, unknown>): T[] {
+  return Object.keys(obj) as T[];
+}
+
+function mapKeys<T extends string>(obj: Record<T, number>): T[] {
+  return Object.keys(obj) as T[];
+}
+
+function keyList<T extends string, V>(obj: Record<T, V>): T[] { ... }
+
+const obj = {
+  a: 1,
+  b: 2,
+} as const;
+
+const _keys1 = keys1(obj);
+const _keys2 = keys2(obj);
+const _keys3 = mapKeys(obj);
