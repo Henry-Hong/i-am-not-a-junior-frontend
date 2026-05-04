@@ -6,6 +6,14 @@ import { useEffect, useLayoutEffect, useState } from "react";
 export default function UseEffectsPage() {
   const [open, setOpen] = useState(true);
 
+  useEffect(async () => {
+    console.log("1");
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+    console.log("2");
+  }, []);
+
+  return <>hello</>;
+
   return (
     <>
       <button onClick={() => setOpen((p) => !p)}>clickme</button>
@@ -15,6 +23,8 @@ export default function UseEffectsPage() {
 }
 
 function Test() {
+  const [counter, setCounter] = useState(0);
+
   useLayoutEffect(() => {
     console.log("useLayoutEffect invked");
     return () => {
@@ -29,6 +39,13 @@ function Test() {
     };
   }, []);
 
+  useEffect(() => {
+    // setCounter(counter + 1);
+    return () => {
+      console.log("useEffect cleanup");
+    };
+  }, [counter]);
+
   return (
     <div
       ref={(_) => {
@@ -38,7 +55,8 @@ function Test() {
         };
       }}
     >
-      asd
+      <p>{counter}</p>
+      <button onClick={() => setCounter(counter + 1)}>count up</button>
     </div>
   );
 }

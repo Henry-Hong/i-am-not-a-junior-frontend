@@ -1,4 +1,4 @@
-import { useId } from "react";
+import { useId, useState } from "react";
 import { DevTools } from "jotai-devtools";
 import "jotai-devtools/styles.css";
 import "./index.css";
@@ -40,6 +40,10 @@ import JotaiPage from "./pages/JotaiPage/index.tsx";
 import DnDPage from "./pages/DnDPage/index.tsx";
 import JotaiEffectPage from "./pages/JotaiEffectPage/index.tsx";
 import ReactQueryThrow from "./pages/ReactQueryThrow/index.tsx";
+import WhiteScreenExamples from "./pages/WhiteScreenExamples.tsx";
+import WhiteScreenWithErrorBoundary from "./pages/WhiteScreenWithErrorBoundary.tsx";
+import TriggerByHeightPage from "./pages/TriggerByHeightPage/index.tsx";
+import UsePage from "./pages/UsePage/index.tsx";
 
 async function enableMocking() {
   if (import.meta.env.DEV) {
@@ -199,7 +203,33 @@ const router = createBrowserRouter([
     path: "/react-query-throw",
     element: <ReactQueryThrow />,
   },
+  {
+    path: "/white-screen",
+    element: <WhiteScreenExamples />,
+    errorElement: <></>,
+  },
+  {
+    path: "/white-screen-error-boundary",
+    element: <WhiteScreenWithErrorBoundary />,
+  },
+  {
+    path: "/trigger-by-height",
+    element: <TriggerByHeightPage />,
+  },
+  {
+    path: "/use",
+    element: <UsePage />,
+  }
 ]);
+
+// const InfiniteRenderExample = () => {
+//   const [count, setCount] = useState(0);
+
+//   // 렌더링마다 state 업데이트 -> 무한 루프
+//   setCount(count + 1);
+
+//   return <div>Count: {count}</div>;
+// };
 
 enableMocking().then(() =>
   ReactDOM.createRoot(document.getElementById("root")!).render(
@@ -207,6 +237,7 @@ enableMocking().then(() =>
       <DevTools />
       <QueryClientProvider client={queryClient}>
         <RouterProvider router={router} />
+        {/* <InfiniteRenderExample /> */}
       </QueryClientProvider>
     </>
   )
